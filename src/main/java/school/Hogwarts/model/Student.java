@@ -26,6 +26,10 @@ public class Student {
         this.faculty = faculty;
     }
 
+    public Student(){
+
+    }
+
     public Student(String name, int age, Long id) {
         this.name = name;
         this.age = age;

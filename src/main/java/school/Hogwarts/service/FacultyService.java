@@ -22,7 +22,7 @@ public class FacultyService {
 
     public Faculty fiendFaculty(long id){
 
-        return facultyRepository.getReferenceById(id);
+        return facultyRepository.findById(id).get();
     }
     public Faculty editFaculty(Faculty faculty){
         if (!facultyRepository.existsById(faculty.getId())){

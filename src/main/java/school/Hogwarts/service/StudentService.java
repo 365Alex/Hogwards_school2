@@ -13,6 +13,7 @@ public class StudentService {
     private final StudentRepository studentRepository;
 
     public StudentService(StudentRepository studentRepository) {
+
         this.studentRepository = studentRepository;
     }
 
@@ -23,7 +24,8 @@ public class StudentService {
 
 
     public Student fiendStudent(long id){
-        return studentRepository.getReferenceById(id);
+
+        return studentRepository.findById(id).get();
     }
 
     public Student editStudent(Student student){
@@ -35,7 +37,8 @@ public class StudentService {
     }
 
     public void deleteStudent(long id){
-        studentRepository.deleteById(id);
+
+      studentRepository.findById(id);
     }
     public Collection<Student> findByAge(int age) {
         return studentRepository.findByAge(age);

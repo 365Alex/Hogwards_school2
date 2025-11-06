@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import school.Hogwarts.model.Faculty;
 import school.Hogwarts.model.Student;
 
 
@@ -35,7 +36,7 @@ public class StudentControllerTestRestTemplate {
 
     @Test
     public void testPostFaculty() throws Exception{
-        Student student = new Student();
+       Student student = new Student();
         student.setName("Hdvdd");
         student.setAge(21);
         Assertions.assertThat(this.testRestTemplate.

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +16,9 @@ public class Faculty {
     @OneToMany(mappedBy = "faculty")
     @JsonIgnore
     private Collection<Student> students;
+
+    public <T> Faculty(long l, String gryffindor, String red, List<T> list) {
+    }
 
 
     public Collection<Student> getStudents() {

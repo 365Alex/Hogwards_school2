@@ -14,6 +14,10 @@ public class Student {
     @JoinColumn(name = "faculty_id")
     private Faculty faculty;
 
+    @ManyToOne
+    @JoinColumn(name = "avatar_id")
+    private Avatar avatar;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -22,9 +26,13 @@ public class Student {
         return faculty;
     }
 
+    public Avatar getAvatar() {return avatar;}
+
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
+
+    public void setAvatar(Avatar avatar){this.avatar = avatar;}
 
     public Student(){
 

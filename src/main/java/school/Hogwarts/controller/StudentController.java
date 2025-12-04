@@ -8,6 +8,7 @@ import school.Hogwarts.model.Student;
 import school.Hogwarts.service.StudentService;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -27,12 +28,13 @@ public class StudentController {
         if (student == null){
             return  ResponseEntity.notFound().build();
         }
+
         return ResponseEntity.ok(student);
     }
+
     @PostMapping
     public Student createStudent(@RequestBody Student student){
-
-        return studentService.addStudent(student);
+                return studentService.addStudent(student);
     }
 
     @PutMapping
@@ -89,4 +91,15 @@ public class StudentController {
         return ResponseEntity.ok(average);
     }
 
+    @GetMapping ("/print-parallel")
+    public ResponseEntity<String> printStudentsInParallel(){
+        studentService.printStudentsInParallel();
+        return ResponseEntity.ok("printStudentsInParallel");
+    }
+
+    @GetMapping("/print-synchronized")
+    public ResponseEntity<String> printStudentsSynchronized() {
+        studentService.printStudentsSynchronized();
+        return ResponseEntity.ok("Synchronized printing completed. Check console output.");
+    }
 }

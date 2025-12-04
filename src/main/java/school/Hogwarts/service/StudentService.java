@@ -7,6 +7,7 @@ import school.Hogwarts.model.*;
 import school.Hogwarts.repository.StudentRepository;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -107,5 +108,53 @@ public class StudentService {
                 .orElse(0.0);
     }
 
+    public void printStudentsInParallel(){
+        List<Student> students = new ArrayList<>(studentRepository.findAll());
+        System.out.println(students.get(0).getName());
+        System.out.println(students.get(1).getName());
+
+            Thread thread1 = new Thread(() -> {
+                System.out.println(students.get(2).getName());
+                try {
+                    Thread.sleep(200);
+                } catch (InterruptedException e) {
+                    System.out.println("Поток прерван");
+                }
+                System.out.println(students.get(3).getName());
+            });
+            thread1.start();
+
+            Thread thread2 = new Thread(() ->{
+                System.out.println(students.get(4).getName());
+                System.out.println(students.get(5));
+            });
+            thread2.start();
+    }
+
+    private synchronized void printStudentName(String threadName, String studentName, int delay){
+
+                System.out.println(threadName + " " + studentName);
+    }
+
+    public void printStudentsSynchronized() {
+        List<Student> students = new ArrayList<>(studentRepository.findAll());
+
+        printStudentName("Основной поток: ", students.get(1).getName(), 80);
+        printStudentName("Основной поток: ", students.get(2).getName(), 100);
+
+        Thread threadOne = new Thread(() -> {
+            printStudentName("Параллельный поток 1", students.get(3).getName(), 150);
+            printStudentName("Параллельный поток 1", students.get(4).getName(), 75);
+        });
+        threadOne.start();
+
+        Thread threadTwo = new Thread(() -> {
+            printStudentName("Параллельный поток 2", students.get(5).getName(), 120);
+            printStudentName("Параллельный поток 2", students.get(6).getName(), 110);
+        });
+
+        threadTwo.start();
+
+    }
 
 }

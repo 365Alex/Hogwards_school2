@@ -101,5 +101,6 @@ public class StudentController {
     public ResponseEntity<String> printStudentsSynchronized() {
         studentService.printStudentsSynchronized();
         return ResponseEntity.ok("Synchronized printing completed. Check console output.");
+
     }
 }

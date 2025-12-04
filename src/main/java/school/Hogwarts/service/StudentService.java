@@ -142,6 +142,7 @@ public class StudentService {
         printStudentName("Основной поток: ", students.get(1).getName(), 80);
         printStudentName("Основной поток: ", students.get(2).getName(), 100);
 
+
         Thread threadOne = new Thread(() -> {
             printStudentName("Параллельный поток 1", students.get(3).getName(), 150);
             printStudentName("Параллельный поток 1", students.get(4).getName(), 75);
